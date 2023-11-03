@@ -15,6 +15,12 @@ const Login = function () {
 	const [toastMessage, setToastMessage] = useState("");
 
     useEffect(() => {
+        if (sessionStorage.getItem("webcode-token")) {
+            router.push("/home");
+        }
+    }, []);
+
+    useEffect(() => {
         const registerSuccess = router.query.registred;
 
         if (registerSuccess === "true") {
