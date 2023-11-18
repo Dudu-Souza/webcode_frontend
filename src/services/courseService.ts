@@ -57,11 +57,10 @@ const courseService = {
     removeFav: async (courseId: number | string) => {
         const token = sessionStorage.getItem("webcode-token");
 
-        const res = await api.delete("/favorites", {
+        const res = await api.delete(`/favorites/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-            data: { courseId },
         }).catch((error) => {
             return error.response;
         });
@@ -97,7 +96,7 @@ const courseService = {
         return res;
     },
 
-    removelike: async (courseId: number | string) => {
+    removeLike: async (courseId: number | string) => {
         const token = sessionStorage.getItem("webcode-token");
 
         const res = await api.delete(`/likes/${courseId}`, {
